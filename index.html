@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Dimensional Train</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="gameCanvas" width="960" height="540" aria-label="The Dimensional Train"></canvas>
+
+      <div id="menuScreen" class="screen active">
+        <h1>THE DIMENSIONAL TRAIN</h1>
+        <div class="menu-buttons">
+          <button data-action="start">START GAME</button>
+          <button data-action="continue">CONTINUE</button>
+          <button data-action="settings">SETTINGS</button>
+          <button data-action="howto">HOW TO PLAY</button>
+          <button data-action="reset">RESET SAVE</button>
+        </div>
+        <p class="footer">Prepared for Moksh Tarvecha</p>
+      </div>
+
+      <div id="hud" class="overlay hidden">
+        <div class="hud-top">
+          <div id="timerDisplay">45.0s</div>
+          <div id="seedDisplay">Seed: --</div>
+          <div id="stateDisplay">Train Safe Zone</div>
+        </div>
+        <div class="hud-bottom">
+          <div id="resourceDisplay"></div>
+          <div id="toolDisplay"></div>
+          <div id="helpHint">E: interact • 1/2/3 tools • ESC pause • F1 debug</div>
+        </div>
+      </div>
+
+      <div id="pauseOverlay" class="screen hidden">
+        <h2>Paused</h2>
+        <button data-action="resume">Resume</button>
+        <button data-action="menu">Main Menu</button>
+      </div>
+
+      <div id="settingsOverlay" class="screen hidden">
+        <h2>Settings</h2>
+        <label><input type="checkbox" id="muteToggle" /> Mute</label>
+        <label>Volume <input type="range" id="volumeRange" min="0" max="1" step="0.01" /></label>
+        <button id="fullscreenBtn">Toggle Fullscreen</button>
+        <button data-action="closeSettings">Back</button>
+      </div>
+
+      <div id="howToOverlay" class="screen hidden">
+        <h2>How To Play</h2>
+        <ul>
+          <li>Move with WASD or Arrow keys.</li>
+          <li>Aim with mouse.</li>
+          <li>Left click to attack/use equipped tool.</li>
+          <li>Press E near door/workbench/expansion marker to interact.</li>
+          <li>Gather resources in expeditions and return before time expires.</li>
+          <li>Time Slimes steal time: avoid hits and fight with your sword.</li>
+          <li>Apples restore +3 seconds. At timer zero outside train, you fail.</li>
+        </ul>
+        <button data-action="closeHowTo">Back</button>
+      </div>
+
+      <div id="workbenchOverlay" class="screen hidden">
+        <h2>Workbench</h2>
+        <div id="recipeList"></div>
+        <button data-action="closeWorkbench">Close</button>
+      </div>
+
+      <div id="debugPanel" class="overlay hidden">
+        <div class="debug-head">DEBUG (F1)</div>
+        <div id="debugStats"></div>
+        <div class="debug-actions">
+          <button data-debug="addResources">+5 Resources</button>
+          <button data-debug="addTime">+5 Time</button>
+          <button data-debug="subTime">-5 Time</button>
+          <button data-debug="spawnSlime">Spawn Slime</button>
+          <button data-debug="killSlimes">Kill Slimes</button>
+          <button data-debug="regen">Regenerate Biome</button>
+          <button data-debug="expandTrain">Expand Train</button>
+          <button data-debug="resetRun">Reset Run</button>
+          <button data-debug="toggleFps">Toggle FPS</button>
+        </div>
+        <label>Seed <input id="seedInput" type="number" /></label>
+        <button data-debug="applySeed">Apply Seed</button>
+      </div>
+
+      <div id="message" class="overlay message hidden"></div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
